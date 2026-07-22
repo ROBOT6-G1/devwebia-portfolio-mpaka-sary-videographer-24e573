@@ -1,0 +1,1 @@
+window.supabase = window.supabase || supabase.createClient("https://hjmhrtlmfnahbcyrvyxm.supabase.co", "sb_publishable_Zk6EpZrfKg8Bpm0bPm24zQ_P1TRdnmJ");
