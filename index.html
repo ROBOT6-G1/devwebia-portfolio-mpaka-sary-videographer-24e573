@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="mg">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - Mpaka sary / Videographer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+    <style type="text/tailwindcss">
+        @theme {
+            --color-brand: #4CAF50; /* Vert */
+            --color-accent: #FFEB3B; /* Jaune */
+            --font-display: "Poppins", sans-serif;
+            --font-body: "Open Sans", sans-serif;
+            --radius: 0.75rem;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="supabase.js"></script>
+    <script src="script.js" defer></script>
+</head>
+<body class="font-body text-gray-800 bg-white antialiased">
+    <header class="sticky top-0 z-50 bg-white/80 backdrop-blur-md shadow-sm">
+        <nav class="container mx-auto max-w-7xl px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold font-display text-brand-600">Portfolio</a>
+            <div class="hidden md:flex space-x-8">
+                <a href="#accueil" class="text-gray-600 hover:text-brand-600 transition">Accueil</a>
+                <a href="#fampidirana" class="text-gray-600 hover:text-brand-600 transition">Fampidirana</a>
+                <a href="#tetikasa" class="text-gray-600 hover:text-brand-600 transition">Tetikasa</a>
+                <a href="#fahaizana" class="text-gray-600 hover:text-brand-600 transition">Fahaizana</a>
+                <a href="#contact" class="text-gray-600 hover:text-brand-600 transition">Contact</a>
+            </div>
+            <button id="mobile-menu-button" class="md:hidden text-gray-600 hover:text-brand-600 focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+            </button>
+        </nav>
+        <div id="mobile-menu" class="md:hidden hidden bg-white/90 backdrop-blur-md pb-4">
+            <nav class="flex flex-col items-center space-y-4">
+                <a href="#accueil" class="text-gray-600 hover:text-brand-600 transition" onclick="document.getElementById('mobile-menu').classList.add('hidden');">Accueil</a>
+                <a href="#fampidirana" class="text-gray-600 hover:text-brand-600 transition" onclick="document.getElementById('mobile-menu').classList.add('hidden');">Fampidirana</a>
+                <a href="#tetikasa" class="text-gray-600 hover:text-brand-600 transition" onclick="document.getElementById('mobile-menu').classList.add('hidden');">Tetikasa</a>
+                <a href="#fahaizana" class="text-gray-600 hover:text-brand-600 transition" onclick="document.getElementById('mobile-menu').classList.add('hidden');">Fahaizana</a>
+                <a href="#contact" class="text-gray-600 hover:text-brand-600 transition" onclick="document.getElementById('mobile-menu').classList.add('hidden');">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section id="hero" class="relative bg-gray-900 text-white py-20 md:py-28 overflow-hidden">
+            <img id="hero-image" src="https://images.unsplash.com/photo-1510511459019-5dda7724fdde?auto=format&fit=crop&w=1600&q=80" alt="Mpaka sary / Videographer" class="absolute inset-0 w-full h-full object-cover opacity-50">
+            <div class="relative container mx-auto max-w-7xl px-6 text-center z-10">
+                <h1 id="hero-title" class="text-5xl md:text-7xl font-display tracking-tight leading-[1.05] font-bold text-white mb-6 animate-fade-in-up">Mpaka sary / Videographer</h1>
+                <p id="hero-subtitle" class="text-xl md:text-2xl font-body text-gray-200 mb-8 max-w-3xl mx-auto animate-fade-in-up delay-100">Mamorona sy manaitra. Manatsara ny orinasanao amin'ny alalan'ny sary sy horonan-tsary kalitao.</p>
+                <a id="hero-cta" href="#tetikasa" class="inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-full text-gray-900 bg-accent-400 hover:bg-accent-500 transition-colors duration-200 animate-fade-in-up delay-200">Jereo ny Portfolio-ko</a>
+            </div>
+        </section>
+
+        <section id="fampidirana" class="py-20 md:py-28 bg-white">
+            <div class="container mx-auto max-w-7xl px-6 flex flex-col md:flex-row items-center gap-12">
+                <div class="md:w-1/2 animate-fade-in-left">
+                    <img id="about-image" src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=800&q=80" alt="Momba ahy" class="rounded-2xl shadow-lg w-full h-auto object-cover">
+                </div>
+                <div class="md:w-1/2 text-center md:text-left animate-fade-in-right">
+                    <h2 id="about-title" class="text-4xl md:text-5xl font-display font-bold text-gray-900 mb-6">Momba ahy</h2>
+                    <p id="about-text" class="text-lg text-gray-700 leading-relaxed mb-6">Manam-pahaizana manokana amin'ny fakana sary sy horonan-tsary aho, manampy ny orinasa hanatsara ny marikany amin'ny alalan'ny tantara hita maso. Ny tanjoko dia ny mamorona votoaty manaitra sy mampahatsiahy izay mampifandray amin'ny mpihaino anao.</p>
+                    <p id="about-process-highlight" class="text-lg text-gray-700 leading-relaxed font-semibold">Ny fizotry ny famoronana sy ny fomba fiasako no singa manan-danja indrindra amin'ny tetikasako rehetra.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="tetikasa" class="py-20 md:py-28 bg-gray-50">
+            <div class="container mx-auto max-w-7xl px-6">
+                <h2 id="projects-title" class="text-4xl md:text-5xl font-display font-bold text-center text-gray-900 mb-12 animate-fade-in-up">Tetikasa vao haingana</h2>
+                <div id="projects-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Project items will be loaded here by script.js -->
+                </div>
+            </div>
+        </section>
+
+        <section id="fahaizana" class="py-20 md:py-28 bg-white">
+            <div class="container mx-auto max-w-7xl px-6 text-center">
+                <h2 id="skills-title" class="text-4xl md:text-5xl font-display font-bold text-gray-900 mb-12 animate-fade-in-up">Ireo fahaizako</h2>
+                <div id="skills-list" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Skill items will be loaded here by script.js -->
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="py-20 md:py-28 bg-brand-600 text-white">
+            <div class="container mx-auto max-w-7xl px-6 text-center">
+                <h2 id="contact-title" class="text-4xl md:text-5xl font-display font-bold text-white mb-8 animate-fade-in-up">Andao hifandray</h2>
+                <p id="contact-text" class="text-lg text-brand-100 leading-relaxed mb-8 max-w-2xl mx-auto animate-fade-in-up delay-100">Vonona ny hiara-hiasa aminao aho mba hamorona votoaty hita maso miavaka. Aza misalasala mifandray amin'ny alalan'ny WhatsApp na mailaka.</p>
+                <div class="flex flex-col sm:flex-row justify-center gap-6 animate-fade-in-up delay-200">
+                    <a id="whatsapp-link" href="https://wa.me/33612345678" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-full text-brand-900 bg-accent-400 hover:bg-accent-500 transition-colors duration-200">
+                        <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.6-3.807-1.6-5.918 0-6.627 5.373-12 12-12s12 5.373 12 12-5.373 12-12 12c-1.9-.009-3.7-.569-5.3-1.6l-6.188 1.686zm6.559-4.828l-.489-.272c-.438-.244-.926-.37-.457-.655.47-.285 1.096-.948 1.488-1.423.39-.475.642-.82.937-.82.295 0 .524.167.707.35.183.184.406.444.609.67.203.226.417.258.7.258.283 0 .76-.115 1.486-.445.726-.33 1.21-1.026 1.424-1.31.214-.284.22-.52.12-.705-.1-.184-.367-.444-.543-.658-.176-.213-.346-.43-.49-.559-.145-.128-.31-.22-.23-.37.08-.15.54-.42.79-.62.25-.2.53-.24.7-.24.174 0 .42.065.61.16.19.095.5.216.7.4.2.18.42.36.57.51.15.15.28.32.37.5.09.18.15.34.15.51 0 .2-.06.7-.42 1.24-.36.54-.74.92-.93 1.06-.19.14-.38.16-.94.4-1.12.47-2.31.91-3.34 1.26-1.03.35-2.07.47-2.45.47-.38 0-.8-.11-1.2-.33z"/></svg>
+                        WhatsApp
+                    </a>
+                    <a id="email-link" href="mailto:contact@example.com" class="inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-full text-white bg-brand-700 hover:bg-brand-800 transition-colors duration-200">
+                        <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M2.003 5.884L10.5 11.413l8.497-5.529C18.91 5.485 19 5.244 19 5a2 2 0 00-2-2H4a2 2 0 00-2 2c0 .244.09.485.003.884zM2 7.039v11.961A2 2 0 004 21h13a2 2 0 002-2V7.039l-8.5 5.513L2 7.039z"/></svg>
+                        Mailaka
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-gray-800 text-gray-300 py-12">
+        <div class="container mx-auto max-w-7xl px-6 text-center">
+            <p id="footer-text">&copy; <span id="current-year"></span> Portfolio. Zo rehetra voatokana.</p>
+        </div>
+    </footer>
+
+    <a id="devwebia-badge" href="https://devwebia-mg.lovable.app" target="_blank" rel="noopener noreferrer" class="fixed bottom-4 right-4 z-[9999] inline-flex items-center gap-2 rounded-full bg-black/80 backdrop-blur px-3 py-1.5 text-xs text-white shadow-lg hover:bg-black transition">
+      <span>✨ Fait avec <strong>DEVWEBIA</strong></span>
+      <button type="button" aria-label="Fermer" onclick="event.preventDefault();event.stopPropagation();document.getElementById('devwebia-badge').remove();" class="ml-1 rounded-full bg-white/10 hover:bg-white/20 w-4 h-4 leading-none text-[10px] flex items-center justify-center">×</button>
+    </a>
+
+    <script>
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.animate-fade-in-up, .animate-fade-in-left, .animate-fade-in-right').forEach(el => {
+            el.classList.add('opacity-0', 'transition-all', 'duration-1000', 'ease-out');
+            if (el.classList.contains('animate-fade-in-up')) {
+                el.classList.add('translate-y-8');
+            } else if (el.classList.contains('animate-fade-in-left')) {
+                el.classList.add('-translate-x-8');
+            } else if (el.classList.contains('animate-fade-in-right')) {
+                el.classList.add('translate-x-8');
+            }
+            observer.observe(el);
+        });
+
+        // Add visible state for animation
+        const style = document.createElement('style');
+        style.innerHTML = `
+            .animate-fade-in-up.is-visible { opacity: 1; transform: translateY(0); }
+            .animate-fade-in-left.is-visible { opacity: 1; transform: translateX(0); }
+            .animate-fade-in-right.is-visible { opacity: 1; transform: translateX(0); }
+            .delay-100 { transition-delay: 100ms; }
+            .delay-200 { transition-delay: 200ms; }
+            .delay-300 { transition-delay: 300ms; }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
