@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="mg">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+    <style type="text/tailwindcss">
+        @theme {
+            --color-brand: #4CAF50; /* Vert */
+            --color-accent: #FFEB3B; /* Jaune */
+            --font-display: "Poppins", sans-serif;
+            --font-body: "Open Sans", sans-serif;
+            --radius: 0.75rem;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="supabase.js"></script>
+    <script src="admin.js" defer></script>
+</head>
+<body class="font-body text-gray-800 bg-gray-100 antialiased">
+    <div id="auth-screen" class="min-h-screen flex items-center justify-center bg-brand-700 p-4">
+        <div class="bg-white p-8 rounded-lg shadow-xl w-full max-w-sm text-center">
+            <h2 class="text-2xl font-bold font-display mb-6 text-gray-900">Fidirana Admin</h2>
+            <input type="password" id="pin-input" placeholder="Ampidiro ny PIN" class="w-full p-3 mb-4 border border-gray-300 rounded-md focus:ring-brand-500 focus:border-brand-500">
+            <button id="pin-submit" class="w-full bg-brand-600 text-white p-3 rounded-md hover:bg-brand-700 transition font-semibold">Hiditra</button>
+            <p id="auth-error" class="text-red-500 mt-4 hidden">PIN diso. Andramo indray.</p>
+        </div>
+    </div>
+
+    <div id="admin-content" class="hidden min-h-screen bg-gray-100">
+        <header class="bg-white shadow-sm">
+            <div class="container mx-auto max-w-7xl px-6 py-4 flex justify-between items-center">
+                <h1 class="text-2xl font-bold font-display text-brand-600">Admin Portfolio</h1>
+                <button id="logout-button" class="bg-gray-200 text-gray-700 px-4 py-2 rounded-md hover:bg-gray-300 transition">Hivoaka</button>
+            </div>
+        </header>
+
+        <main class="container mx-auto max-w-7xl px-6 py-8">
+            <h2 class="text-3xl font-bold font-display text-gray-900 mb-8">Fanitsiana ny atiny</h2>
+
+            <div id="sections-nav" class="flex flex-wrap gap-2 mb-8">
+                <!-- Section buttons will be dynamically loaded here -->
+            </div>
+
+            <div id="content-editor" class="bg-white p-8 rounded-lg shadow-md">
+                <!-- Content editor fields will be loaded here -->
+            </div>
+        </main>
+    </div>
+
+    <template id="text-field-template">
+        <div class="mb-6">
+            <label for="" class="block text-gray-700 text-sm font-bold mb-2"></label>
+            <input type="text" id="" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline focus:ring-brand-500 focus:border-brand-500">
+        </div>
+    </template>
+
+    <template id="textarea-field-template">
+        <div class="mb-6">
+            <label for="" class="block text-gray-700 text-sm font-bold mb-2"></label>
+            <textarea id="" rows="4" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline focus:ring-brand-500 focus:border-brand-500"></textarea>
+        </div>
+    </template>
+
+    <template id="image-field-template">
+        <div class="mb-6">
+            <label for="" class="block text-gray-700 text-sm font-bold mb-2"></label>
+            <img id="_preview" src="" alt="Preview" class="w-48 h-auto object-cover rounded-md mb-2 border border-gray-200">
+            <input type="file" id="" accept="image/*" class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-brand-50 file:text-brand-700 hover:file:bg-brand-100">
+            <button id="_upload" class="mt-2 bg-brand-600 text-white py-2 px-4 rounded-md hover:bg-brand-700 transition">Ampidiro/Ovay</button>
+        </div>
+    </template>
+
+    <template id="list-item-template">
+        <div class="border border-gray-200 rounded-md p-4 mb-4 bg-gray-50 flex flex-col gap-4">
+            <input type="hidden" class="list-item-id">
+            <div class="flex justify-end gap-2">
+                <button type="button" class="list-item-move-up text-gray-500 hover:text-gray-700 transition"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"></path></svg></button>
+                <button type="button" class="list-item-move-down text-gray-500 hover:text-gray-700 transition"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg></button>
+                <button type="button" class="list-item-delete text-red-500 hover:text-red-700 transition"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1H9a1 1 0 00-1 1v3m-3 0h14"></path></svg></button>
+            </div>
+            <!-- Dynamic fields for list item here -->
+        </div>
+    </template>
+
+    <template id="list-section-template">
+        <div class="mb-8">
+            <h3 class="text-2xl font-bold font-display text-gray-900 mb-4"></h3>
+            <div class="list-items-container"></div>
+            <button type="button" class="list-add-button mt-4 bg-brand-600 text-white py-2 px-4 rounded-md hover:bg-brand-700 transition">Ampio</button>
+        </div>
+    </template>
+</body>
+</html>
